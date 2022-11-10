@@ -1,0 +1,15 @@
+[package]
+name = "gaf"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+clap = { version = "4.0.18", features = ["derive", "env"] }
+dotenv = { version = "0.15.0", features = ["clap"] }
+psutil = "3.2.2"
+reqwest = { version = "0.11.12", features = ["serde_json", "blocking"] }
+serde = { version = "1.0.147", features = ["derive"] }
+serde_json = "1.0.87"
+thiserror = "=1.0.36"
