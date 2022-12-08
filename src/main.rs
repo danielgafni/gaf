@@ -23,7 +23,7 @@ enum Commands {
     Weather {},
     /// Shows uptime. Arguments: hours, minutes
     Uptime { mode: String },
-    /// Shows current date, weekday, hour and minute
+    /// Shows current year, month, day, hour, minute and weekday
     Calendar {},
 }
 

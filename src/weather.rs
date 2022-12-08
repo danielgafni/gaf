@@ -300,6 +300,5 @@ pub fn get_current_weather() -> String {
     let body = reqwest::blocking::get(url).unwrap().text().unwrap();
 
     let weather_info: WeatherInfo = serde_json::from_str(&body.as_str()).unwrap();
-    // let pretty_weather_info = *;
     serde_json::to_string(&WeatherPrettyInfo::from_weather_info(weather_info)).unwrap()
 }
