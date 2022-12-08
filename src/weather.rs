@@ -71,60 +71,210 @@ pub struct WeatherPrettyInfo {
     pub advice: String,
     pub temp: f64,
     pub hex: String,
-    pub description: String
+    pub description: String,
 }
 
 impl WeatherPrettyInfo {
     pub fn from_weather_info(weather_info: WeatherInfo) -> Box<WeatherPrettyInfo> {
-        let weather_codes_map: HashMap<&str, (&str, &str, &str, &str)> = HashMap::from(
-            [
-                ("50d", (" ", "#84afdb", "Forecast says it's misty", "Make sure you don't get lost on your way...")),
-                ("50n", (" ", "#84afdb", "Forecast says it's a misty night", "Don't go anywhere tonight or you might get lost...")),
-                ("01d", (" ", "#ffd86b", "It's a sunny day, gonna be fun!", "Don't go wandering all by yourself though...")),
-                ("01n", ("", "#fcdcf6", "It's a clear night", "You might want to take a evening stroll to relax..."
-                )),
-                ("02d", ("", "#adadff", "It's  cloudy, sort of gloomy", "You'd better get a book to read..."
-                )),
-                ("02n", ("", "#adadff", "It's a cloudy night", "How about some hot chocolate and a warm bed?"
-                )),
-                ("03d", ("", "#adadff", "It's  cloudy, sort of gloomy", "You'd better get a book to read..."
-                )),
-                ("03n", ("", "#adadff", "It's a cloudy night", "How about some hot chocolate and a warm bed?"
-                )),
-                ("04d", ("", "#adadff", "It's  cloudy, sort of gloomy", "You'd better get a book to read..."
-                )),
-                ("04n", ("", "#adadff", "It's a cloudy night", "How about some hot chocolate and a warm bed?"
-                )),
-                ("09d", ("", "#6b95ff", "It's rainy, it's a great day!", "Get some ramen and watch as the rain falls..."
-                )),
-                ("09n", ("", "#6b95ff", " It's gonna rain tonight it seems", "Make sure your clothes aren't still outside..."
-                )),
-                ("10d", ("", "#6b95ff", "It's rainy, it's a great day!", "Get some ramen and watch as the rain falls..."
-                )),
-                ("10n", ("", "#6b95ff", " It's gonna rain tonight it seems", "Make sure your clothes aren't still outside..."
-                )),
-                ("11d", ("", "#ffeb57", "There's storm for forecast today", "Make sure you don't get blown away...")),
-                ("11n", ("", "#ffeb57", "There's gonna be storms tonight", "Make sure you're warm in bed and the windows are shut...")),
-                ("13d", ("", "#e3e6fc", "It's gonna snow today", "You'd better wear thick clothes and make a snowman as well!"
-                )),
-                ("13n", ("", "#e3e6fc", "It's gonna snow tonight", "Make sure you get up early tomorrow to see the sights..."
-                )),
-                ("40d", ("", "#84afdb", "Forecast says it's misty", "Make sure you don't get lost on your way..."
-                )),
-                ("40n", ("", "#84afdb", "Forecast says it's a misty night", "Don't go anywhere tonight or you might get lost..."
-                )),
-
-        ]
-        );
+        let weather_codes_map: HashMap<&str, (&str, &str, &str, &str)> = HashMap::from([
+            (
+                "50d",
+                (
+                    " ",
+                    "#84afdb",
+                    "Forecast says it's misty",
+                    "Make sure you don't get lost on your way...",
+                ),
+            ),
+            (
+                "50n",
+                (
+                    " ",
+                    "#84afdb",
+                    "Forecast says it's a misty night",
+                    "Don't go anywhere tonight or you might get lost...",
+                ),
+            ),
+            (
+                "01d",
+                (
+                    " ",
+                    "#ffd86b",
+                    "It's a sunny day, gonna be fun!",
+                    "Don't go wandering all by yourself though...",
+                ),
+            ),
+            (
+                "01n",
+                (
+                    "",
+                    "#fcdcf6",
+                    "It's a clear night",
+                    "You might want to take a evening stroll to relax...",
+                ),
+            ),
+            (
+                "02d",
+                (
+                    "",
+                    "#adadff",
+                    "It's  cloudy, sort of gloomy",
+                    "You'd better get a book to read...",
+                ),
+            ),
+            (
+                "02n",
+                (
+                    "",
+                    "#adadff",
+                    "It's a cloudy night",
+                    "How about some hot chocolate and a warm bed?",
+                ),
+            ),
+            (
+                "03d",
+                (
+                    "",
+                    "#adadff",
+                    "It's  cloudy, sort of gloomy",
+                    "You'd better get a book to read...",
+                ),
+            ),
+            (
+                "03n",
+                (
+                    "",
+                    "#adadff",
+                    "It's a cloudy night",
+                    "How about some hot chocolate and a warm bed?",
+                ),
+            ),
+            (
+                "04d",
+                (
+                    "",
+                    "#adadff",
+                    "It's  cloudy, sort of gloomy",
+                    "You'd better get a book to read...",
+                ),
+            ),
+            (
+                "04n",
+                (
+                    "",
+                    "#adadff",
+                    "It's a cloudy night",
+                    "How about some hot chocolate and a warm bed?",
+                ),
+            ),
+            (
+                "09d",
+                (
+                    "",
+                    "#6b95ff",
+                    "It's rainy, it's a great day!",
+                    "Get some ramen and watch as the rain falls...",
+                ),
+            ),
+            (
+                "09n",
+                (
+                    "",
+                    "#6b95ff",
+                    " It's gonna rain tonight it seems",
+                    "Make sure your clothes aren't still outside...",
+                ),
+            ),
+            (
+                "10d",
+                (
+                    "",
+                    "#6b95ff",
+                    "It's rainy, it's a great day!",
+                    "Get some ramen and watch as the rain falls...",
+                ),
+            ),
+            (
+                "10n",
+                (
+                    "",
+                    "#6b95ff",
+                    " It's gonna rain tonight it seems",
+                    "Make sure your clothes aren't still outside...",
+                ),
+            ),
+            (
+                "11d",
+                (
+                    "",
+                    "#ffeb57",
+                    "There's storm for forecast today",
+                    "Make sure you don't get blown away...",
+                ),
+            ),
+            (
+                "11n",
+                (
+                    "",
+                    "#ffeb57",
+                    "There's gonna be storms tonight",
+                    "Make sure you're warm in bed and the windows are shut...",
+                ),
+            ),
+            (
+                "13d",
+                (
+                    "",
+                    "#e3e6fc",
+                    "It's gonna snow today",
+                    "You'd better wear thick clothes and make a snowman as well!",
+                ),
+            ),
+            (
+                "13n",
+                (
+                    "",
+                    "#e3e6fc",
+                    "It's gonna snow tonight",
+                    "Make sure you get up early tomorrow to see the sights...",
+                ),
+            ),
+            (
+                "40d",
+                (
+                    "",
+                    "#84afdb",
+                    "Forecast says it's misty",
+                    "Make sure you don't get lost on your way...",
+                ),
+            ),
+            (
+                "40n",
+                (
+                    "",
+                    "#84afdb",
+                    "Forecast says it's a misty night",
+                    "Don't go anywhere tonight or you might get lost...",
+                ),
+            ),
+        ]);
 
         let weather_icon = weather_info.weather[0].icon.as_str();
         let description = weather_info.weather[0].description.clone();
 
-        let unknown_weather_id_quote = format!("Sort of odd, I don't know what to forecast for {}...", weather_icon);
+        let unknown_weather_id_quote = format!(
+            "Sort of odd, I don't know what to forecast for {}...",
+            weather_icon
+        );
 
         let (icon, hex, quote, advice) = weather_codes_map
             .get(weather_icon)
-            .unwrap_or(&("", "#84afdb", unknown_weather_id_quote.as_str(), "Make sure you have a good time!"))
+            .unwrap_or(&(
+                "",
+                "#84afdb",
+                unknown_weather_id_quote.as_str(),
+                "Make sure you have a good time!",
+            ))
             .clone();
 
         return Box::new(WeatherPrettyInfo {
@@ -133,7 +283,7 @@ impl WeatherPrettyInfo {
             advice: String::from(advice),
             temp: weather_info.main.temp - 273.15, // to Celsius
             hex: String::from(hex),
-            description
+            description,
         });
     }
 }
@@ -150,6 +300,6 @@ pub fn get_current_weather() -> String {
     let body = reqwest::blocking::get(url).unwrap().text().unwrap();
 
     let weather_info: WeatherInfo = serde_json::from_str(&body.as_str()).unwrap();
-    let pretty_weather_info = *WeatherPrettyInfo::from_weather_info(weather_info);
-    serde_json::to_string(&pretty_weather_info).unwrap()
+    // let pretty_weather_info = *;
+    serde_json::to_string(&WeatherPrettyInfo::from_weather_info(weather_info)).unwrap()
 }

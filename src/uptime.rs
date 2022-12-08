@@ -1,6 +1,5 @@
 use psutil::host::uptime;
 
-
 pub fn get_uptime_hours() -> String {
     let uptime_seconds = uptime().unwrap().as_secs();
     format!("{}", uptime_seconds / 3600)
